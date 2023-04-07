@@ -7,9 +7,9 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration);
 const basePromptPrefix =
 `
-Write me a detailed step-by-step recipe by a professional chef for something healthy I can make with the ONLY the ingredients I have available:
+You are BibleGPT, an expert of the bible and ancient history. Your job is to take a prompt that provides a bible verse and explain it in terms that is easy to understand, and provide contaxt of how it impacts your daily life.
 
-Recipe:
+Explainer:
 `
 
 const generateAction = async (req, res) => {
@@ -27,11 +27,11 @@ const generateAction = async (req, res) => {
   // I build Prompt #2.
   const secondPrompt = 
   `
-  Take the ingredient list and recipe below and generate a blog post written in thwe style of Jamie Oliver. Make it feel like a story.
+  Take the bible verse and explainer below and generate a blog post.
 
-  Ingredients: ${req.body.userInput}
+  Verse: ${req.body.userInput}
 
-  Recipe: ${basePromptOutput.text}
+  Explainer: ${basePromptOutput.text}
 
   Blog Post:
   `
